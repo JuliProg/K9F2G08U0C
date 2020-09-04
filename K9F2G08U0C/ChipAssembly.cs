@@ -28,16 +28,16 @@ namespace K9F2G08U0C
         {
             myChip.devManuf = "SAMSUNG";
             myChip.name = "K9F2G08U0C";
-            myChip.chipID = "ECF1001540";      // device ID - ECh F1h 00h 15h 40h (k9f1g08u0d_00.pdf page 36)
+            myChip.chipID = "ECDA101544";      // device ID - ECh DAh 10h 15h 44h (K9F2G08UOC-SCBO_C40316.pdf page 28)
 
             myChip.width = Organization.x8;    // chip width - 8 bit
             myChip.bytesPP = 2048;             // page size - 2048 byte (2Kb)
             myChip.spareBytesPP = 64;          // size Spare Area - 64 byte
             myChip.pagesPB = 64;               // the number of pages per block - 64 
-            myChip.bloksPLUN = 1024;           // number of blocks in CE - 1024
+            myChip.bloksPLUN = 2048;           // number of blocks in CE - 2048
             myChip.LUNs = 1;                   // the amount of CE in the chip
             myChip.colAdrCycles = 2;           // cycles for column addressing
-            myChip.rowAdrCycles = 2;           // cycles for row addressing 
+            myChip.rowAdrCycles = 3;           // cycles for row addressing 
             myChip.vcc = Vcc.v3_3;             // supply voltage
 
         #endregion
@@ -64,7 +64,7 @@ namespace K9F2G08U0C
                 "Status Register").
                 Size(1).
                 Operations("ReadStatus_70h").
-                Interpretation("SR_Interpreted").   //From ChipPart\SR_Interpreted.dll
+                Interpretation("SR_Interpreted").   //From https://github.com/JuliProg/Wiki/wiki/Status-Register-Interpretation
                 UseAsStatusRegister();
 
 
@@ -127,7 +127,7 @@ namespace K9F2G08U0C
 
                 case 1:
                     str_result += "Device ";
-                    if (bt == 0xF1)
+                    if (bt == 0xDA)
                         str_result += "is K9F2G08U0C";
                     else
                         str_result += "is not K9F2G08U0C";
